@@ -16,5 +16,6 @@ jobs:
             username: ${{ secrets.REMOTE_USER }}
             password: "Vi@20901663"
             port: ${{ secrets.REMOTE_PORT }}
-          script: sh //domains/viniciusgoulart.online/project/deploy_prod.sh
+          script: |
+            Hello World
 
