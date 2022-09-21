@@ -13,7 +13,7 @@ jobs:
           with:
             host: ${{ secrets.REMOTE_HOST }}
             username: ${{ secrets.REMOTE_USER }}
-            password: "Vi@20901663"
+            password: ${{ secrets.REMOTE_PASSWORD }}
             port: ${{ secrets.REMOTE_PORT }}
             script: |
               cd domains/viniciusgoulart.online/project/
