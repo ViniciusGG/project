@@ -4,23 +4,16 @@ on:
     branches: [ main ]
 jobs:
   build:
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
-    # - name: Checkout do repositorio
-    #   uses: actions/checkout@v2
-    - name: Deploy para meu hosting
+    - name: Deploy code to Production
       uses: appleboy/ssh-action@master
       with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           password: "Vi@20901663"
           port: ${{ secrets.REMOTE_PORT }}
-        # SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-        # ARGS: "-rltgoDzvO --delete"
-        # REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        # REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        # REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        # TARGET: ${{ secrets.REMOTE_TARGET }}
         script: |
           cd domains/viniciusgoulart.online/project/
           git checkout -f 
