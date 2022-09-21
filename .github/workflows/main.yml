@@ -1,20 +1,23 @@
-name: Deploy website on push
-on: 
+name: "Deploy to Production Server"
+on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 jobs:
   build:
-    name: Build and deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Deploy code to Production
-      uses: appleboy/ssh-action@master
-      with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          password: "Vi@20901663"
-          port: ${{ secrets.REMOTE_PORT }}
-        script: |
-          cd domains/viniciusgoulart.online/project/
-          git checkout -f 
-          git pull
+      name: Build
+      needs: tests
+      runs-on: ubuntu-latest
+      steps:      
+        - name: Deploy code to Production
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.REMOTE_HOST }}
+            username: ${{ secrets.REMOTE_USER }}
+            password: "Vi@20901663"
+            port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            cd domains/viniciusgoulart.online/project/
+            git checkout -f 
+            git pull
+
